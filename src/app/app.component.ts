@@ -13,7 +13,7 @@ export class AppComponent  {
   options: any;
   constructor() {
     this.data = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+        labels: ['January January January', 'February', 'March', 'April', 'May', 'June', 'July'],
         datasets: [
             {
                 label: 'My First dataset',
@@ -33,9 +33,13 @@ export class AppComponent  {
         scales: {
             xAxes: [{
                 ticks: {
-                    callback: function(value, index, values) {
-                        return '$' + value;
-                    }
+                  autoSkip: false,
+                  maxRotation: 0,
+                  minRotation: 0,
+                  callback: function(value, index, values) {
+                    //return '$' + value;
+                    return value.match(/.{1,7}/g)
+                  }
                 }
             }]
         }
